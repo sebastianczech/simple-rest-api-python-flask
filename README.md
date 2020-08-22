@@ -25,3 +25,15 @@ Test app:
 ```bash
 python -m pytest test.py
 ```
+
+Containerizing app:
+
+```bash
+docker build -t sebastian-czech/simple-rest-api-python-flask .
+```
+
+Run app in container:
+
+```bash
+docker run -p 48080:48080 sebastian-czech/simple-rest-api-python-flask
+```
