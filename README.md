@@ -26,6 +26,13 @@ Test app:
 python -m pytest test.py
 ```
 
+Test app and generate report:
+
+```bash
+pytest test.py --html=report.html 
+pytest test.py --junit-xml=report.xml 
+```
+
 Containerizing app:
 
 ```bash
