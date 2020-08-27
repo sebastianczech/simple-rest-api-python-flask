@@ -19,16 +19,20 @@ pipeline {
         }
         stage('Install') {
             steps {
-                echo 'Installing packages..'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    echo 'Installing packages..'
 
-                sh 'pip install -r requirements.txt'
+                    sh 'pip install -r requirements.txt'
+                }
             }
         }
         stage('Test unit') {
             steps {
-                echo 'Unit testing..'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                    echo 'Unit testing..'
 
-                sh 'pytest test.py'
+                    sh 'pytest test.py'
+                }
             }
             post {
                 always {
