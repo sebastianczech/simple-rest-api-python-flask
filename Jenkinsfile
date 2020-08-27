@@ -3,6 +3,11 @@ pipeline {
 
     stages {
         stage('Info') {
+            agent {
+                docker {
+                    image 'python:3.8-alpine'
+                }
+            }
             steps {
                 echo 'Current working directory: '
 
