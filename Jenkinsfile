@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.8-alpine'
-        }
-    }
+    agent none
 
     stages {
         stage('Info') {
@@ -17,26 +13,32 @@ pipeline {
                 sh 'ls -la'
             }
         }
-        stage('Install') {
-            steps {
-                withEnv(["HOME=${env.WORKSPACE}"]) {
-                    echo 'Installing packages..'
-
-                    sh 'pip install -r requirements.txt'
+        stage('Build') {
+            agent {
+                docker {
+                    image 'python:3.8-alpine'
                 }
+            }
+            steps {
+                echo 'Compile main.py..'
+
+                sh 'python -m py_compile main.py'
             }
         }
         stage('Test unit') {
-            steps {
-                withEnv(["HOME=${env.WORKSPACE}"]) {
-                    echo 'Unit testing..'
-
-                    sh 'pytest test.py'
+           agent {
+                docker {
+                    image 'qnib/pytest'
                 }
+            }
+            steps {
+                echo 'Unit testing..'
+
+                sh 'pytest test.py --junit-xml=test-reports/report.xml '
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'test-reports/report.xml'
                 }
             }
         }
