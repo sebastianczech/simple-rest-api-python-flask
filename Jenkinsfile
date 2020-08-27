@@ -21,14 +21,14 @@ pipeline {
             steps {
                 echo 'Installing packages..'
 
-                sh 'pip install -r /requirements.txt'
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Test unit') {
             steps {
                 echo 'Unit testing..'
 
-                sh 'pytest /app/test.py'
+                sh 'pytest test.py'
             }
             post {
                 always {
