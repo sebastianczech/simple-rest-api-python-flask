@@ -20,17 +20,23 @@ Start app:
 python3 main.py  
 ```
 
-Test app:
+Unit test:
 
 ```bash
 python -m pytest test.py
 ```
 
-Test app and generate report:
+Unit test and generate report:
 
 ```bash
 pytest test.py --html=report.html 
 pytest test.py --junit-xml=report.xml 
+```
+
+Acceptance test:
+
+```bash
+robot --outputdir results atest/ 
 ```
 
 Containerizing app:
