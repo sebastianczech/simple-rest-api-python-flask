@@ -31,7 +31,7 @@ pipeline {
             }
         }
         stage('Test unit') {
-           agent {
+            agent {
                 docker {
                     image 'qnib/pytest'
                 }
@@ -48,8 +48,25 @@ pipeline {
             }
         }
         stage('Test acceptance') {
+            agent {
+                docker {
+                    image 'robotframework/rfdocker'
+                }
+            }
             steps {
                 echo 'Acceptance testing..'
+
+                sh 'robot --outputdir results atest/'
+
+                step([
+                    $class : 'RobotPublisher',
+                    outputPath : 'results',
+                    outputFileName : 'report.html',
+                    disableArchiveOutput : false,
+                    passThreshold : 100,
+                    unstableThreshold: 95.0,
+                    otherFiles : '',
+                ])
             }
         }
     }
