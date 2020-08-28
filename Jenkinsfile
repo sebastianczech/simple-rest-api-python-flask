@@ -57,16 +57,19 @@ pipeline {
                 echo 'Acceptance testing..'
 
                 sh 'robot --outputdir results atest/'
-
-                step([
-                    $class : 'RobotPublisher',
-                    outputPath : 'results',
-                    outputFileName : 'report.html',
-                    disableArchiveOutput : false,
-                    passThreshold : 100,
-                    unstableThreshold: 95.0,
-                    otherFiles : '',
-                ])
+            }
+            post {
+                always {
+                    step([
+                        $class : 'RobotPublisher',
+                        outputPath : 'results',
+                        outputFileName : 'report.html',
+                        disableArchiveOutput : false,
+                        passThreshold : 100,
+                        unstableThreshold: 95.0,
+                        otherFiles : '',
+                    ])
+                }
             }
         }
     }
