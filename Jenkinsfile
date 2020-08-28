@@ -49,8 +49,8 @@ pipeline {
         }
         stage('Test acceptance') {
             agent {
-                docker {
-                    image 'robotframework/rfdocker'
+                node {
+                    label 'homelab'
                 }
             }
             steps {
