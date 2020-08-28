@@ -5,12 +5,12 @@ Documentation   Acceptance test for REST API in Flask
 
 
 *** Test Cases ***
-GET existing items
+GET items
     GET         /items
     Output      response body
     [Teardown]  Output schema
 
-GET existing items
+GET users
     GET         /users
     Integer     response status           404
     Output      response body
