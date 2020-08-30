@@ -42,6 +42,9 @@ pipeline {
                 sh 'pytest test.py --junit-xml=test-reports/report.xml '
             }
             post {
+                success {
+                    build wait: false, job: 'CI-CD-pipeline-acceptance-tests'
+                }
                 always {
                     junit 'test-reports/report.xml'
                 }
