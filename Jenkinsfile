@@ -47,32 +47,5 @@ pipeline {
                 }
             }
         }
-        stage('Test acceptance') {
-            agent {
-                node {
-                    label 'homelab'
-                }
-            }
-            steps {
-                echo 'Acceptance testing..'
-
-                sh 'robot --outputdir results atest/'
-            }
-            post {
-                always {
-                    step([
-                        $class : 'RobotPublisher',
-                        outputPath : 'results',
-                        outputFileName : 'output.xml',
-                        reportFileName : 'report.html',
-                        logFileName : 'log.html',
-                        disableArchiveOutput : false,
-                        passThreshold : 100,
-                        unstableThreshold: 95.0,
-                        otherFiles : '',
-                    ])
-                }
-            }
-        }
     }
 }

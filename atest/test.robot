@@ -1,5 +1,5 @@
 *** Settings ***
-Library         REST    http://localhost:48080/
+Library         REST    http://192.168.0.36:48080/
 Documentation   Acceptance test for REST API in Flask
 ...             build using RESTinstance library
 
