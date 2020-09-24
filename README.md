@@ -1,5 +1,7 @@
 # Simple REST API in Python with Flask
 
+[![BCH compliance](https://bettercodehub.com/edge/badge/sebastianczech/simple-rest-api-python-flask?branch=master)](https://bettercodehub.com/)
+
 Create virtual environment:
 
 ```bash
