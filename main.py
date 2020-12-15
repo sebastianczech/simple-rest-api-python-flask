@@ -1,6 +1,6 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 items = [
     {
@@ -17,6 +17,11 @@ items = [
 @app.route('/items', methods=['GET'])
 def get_tasks():
     return jsonify({'tasks': items})
+
+
+@app.route('/home')
+def home_page():
+    return render_template('home.html')
 
 
 @app.route('/')
