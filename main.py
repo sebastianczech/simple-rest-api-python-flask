@@ -1,6 +1,11 @@
-from flask import Flask, jsonify, render_template
+from flask import jsonify, render_template
+import connexion
 
-app = Flask(__name__, template_folder='templates')
+# app = Flask(__name__, template_folder='templates')
+
+app = connexion.App(__name__, specification_dir='specification')
+
+app.add_api('swagger.yml')
 
 items = [
     {
@@ -29,4 +34,4 @@ def index():
     return 'Python REST API in Flask'
 
 
-app.run(host='0.0.0.0', port=48080)
+app.run(host='0.0.0.0', port=48080, debug=True)
