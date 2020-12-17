@@ -41,6 +41,10 @@ Acceptance test:
 robot --outputdir results atest/ 
 ```
 
+Documents about REST API:
+* [Connexion](https://github.com/zalando/connexion)
+* [Swagger UI](http://0.0.0.0:48080/api/ui/)
+
 Containerizing app:
 
 ```bash
