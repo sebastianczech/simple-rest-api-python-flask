@@ -1,12 +1,6 @@
 from flask import jsonify, render_template
 import connexion
 
-# app = Flask(__name__, template_folder='templates')
-
-app = connexion.App(__name__, specification_dir='specification')
-
-app.add_api('swagger.yml')
-
 items = [
     {
         'id': 1,
@@ -17,6 +11,16 @@ items = [
         'name': u'Secret item'
     }
 ]
+
+
+def create_app():
+    # app = Flask(__name__, template_folder='templates')
+    app = connexion.App(__name__, specification_dir='specification')
+    app.add_api('swagger.yml')
+    return app
+
+
+app = create_app()
 
 
 @app.route('/items', methods=['GET'])
