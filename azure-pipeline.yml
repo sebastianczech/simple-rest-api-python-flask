@@ -30,9 +30,9 @@ jobs:
     inputs:
       script: pip install pytest && pytest --junit-xml=report.xml
   - task: PublishTestResults@2
-    displayName: Publish Test Results **/test-results.xml
+    displayName: Publish Test Results
     inputs:
-      testResultsFiles: '**/test-results.xml'
+      testResultsFiles: report.xml
       testRunTitle: Python $(python.version)
 - job: Phase_2
   displayName: Publish
