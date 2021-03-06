@@ -1,5 +1,9 @@
 # Variable 'python.version' was defined in the Variables tab
 # Multi-job configuration must be converted to matrix strategy: https://docs.microsoft.com/en-us/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml#multi-job-configuration
+trigger:
+  branches:
+    include:
+    - refs/heads/master
 name: $(date:yyyyMMdd)$(rev:.r)
 jobs:
 - job: Phase_1
@@ -19,13 +23,12 @@ jobs:
   - task: CmdLine@2
     displayName: Flake8
     continueOnError: True
-    enabled: False
     inputs:
       script: pip install flake8 && flake8
   - task: CmdLine@2
     displayName: pytest
     inputs:
-      script: pip install pytest && pytest tests --doctest-modules --junitxml=junit/test-results.xml
+      script: pip install pytest && pytest --junit-xml=report.xml
   - task: PublishTestResults@2
     displayName: Publish Test Results **/test-results.xml
     inputs:
