@@ -7,6 +7,7 @@ connexion==2.7.0
 coverage==5.3
 decorator==4.4.2
 docutils==0.16
+flake8==3.8.4
 Flask==1.1.2
 flex==6.14.1
 genson==1.2.2
@@ -19,12 +20,15 @@ jsonpath-ng==1.5.2
 jsonpointer==2.0
 jsonschema==3.2.0
 MarkupSafe==1.1.1
+mccabe==0.6.1
 more-itertools==8.6.0
 openapi-spec-validator==0.2.9
 packaging==20.8
 pluggy==0.13.1
 ply==3.11
 py==1.9.0
+pycodestyle==2.6.0
+pyflakes==2.2.0
 Pygments==2.7.3
 pyparsing==2.4.7
 pyrsistent==0.17.3
